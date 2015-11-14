@@ -34,7 +34,7 @@ and open the template in the editor.
                         <a href="#">Join</a>
                     </li>
                     <li>
-                        <a href="#"><input type="search" name="searchString" id="search"> <button style="height:28px"type="search" class="glyphicon glyphicon-search"></button >
+                        <form action="index.php/quizController/searchQuiz" method="POST"> <a href="#"><input type="search" name="searchString" id="search"> <button style="height:28px"type="submit" class="glyphicon glyphicon-search"></button ></form>
                     </a>
                     </li>
                 </ul>

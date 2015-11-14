@@ -80,8 +80,28 @@ class Quiz extends CI_Model {
         $this->prepareQuestionsList($this->id);
         
     }
-    private function searchQuizzes($queryString,$type){
-        
+    public function searchQuizzes($queryParam,$type){
+       
+        $queryString = "Select * from Quiz"; 
+        if($type=="CATEGORY"){
+            $queryString = "SELECT * FROM Quiz WHERE category LIKE '%".$queryParam."%'";  
+           
+        }
+        if($type=="SEARCH"){
+            $queryString = "SELECT * FROM Quiz WHERE category LIKE '%".$queryParam."%' OR quiz_title LIKE '%".$queryParam."%'";
+        }
+        $query = $this->db->query($queryString);
+        $quizes = array();
+        $i=0;
+        foreach ($query->result() as $row)
+        {
+            $newQuiz = new Quiz();
+            $newQuiz->setBasicValues($row->quiz_id, $row->quiz_title, $row->type, $row->author,$row->image,$row->category,$row->description,$this->date);
+            $quizes[$i] = $newQuiz;
+            $i++;
+        }
+        return $quizes;
+            
     }
     private function prepareQuestionsList($id){
         $queryString = "Select * from Questions WHERE quiz_id=".$id; 
@@ -198,6 +218,9 @@ class Quiz extends CI_Model {
     }
     public function getDate(){
         return $this->date;
+    }
+    public function getScore(){
+        return $this->score;
     }
     public function getQuestionsAsJSON(){
         $jsonString = "{";

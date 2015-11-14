@@ -11,6 +11,8 @@
  *
  * @author Malith
  */
+
+
 echo '<link href="http://localhost/advWebCw1/assets/css/bootstrap.min.css" rel="stylesheet">'
     .'<link href="http://localhost/advWebCw1/assets/css/1-col-portfolio.css" rel="stylesheet">';
 echo '<script src="http://localhost/advWebCw1/assets/js/jquery.js"></script>'

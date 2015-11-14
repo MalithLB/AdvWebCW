@@ -34,12 +34,12 @@ class SimpleQuizEvaluationCriteria extends EvaluationCriteria{
                 $score++;   
             } 
         }
-        return $score;
+        return ($score/count($usersAnswers))*100;
     }
     
     public function getVerdict($verdictsArray,$score) {
         foreach($verdictsArray as $verdict){
-            if($verdict[0]>$score && $verdict[1]<$score||($verdict[1]<$score||$verdict[0]==$score)){
+        if($verdict[0]<=$score && $verdict[1]>$score ||$verdict[1]==$score){
                 $newVerdict = array();
                 $newVerdict[0] = $verdict[2];
                 $newVerdict[1] = $verdict[3];

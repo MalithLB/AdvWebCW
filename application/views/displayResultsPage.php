@@ -41,9 +41,14 @@
                     <image style="max-width: 500px;max-height:500px" src="<?php  echo $verdict[1];?>">
                     <div class="caption">
                         <h4><?php echo $verdict[0]; ?></h4>
-                        <p>Try again or go back to home</p>
+                        <?php
+                            if($quiz->getType()=="SIMPLE")
+                            echo "<h5>You've got  echo ".$quiz->getScore()."% of the answers right.</small></h5>";
+                        ?>
+                        <br>
+                        <h5><small><p>Try again or go back to home</p><small></h5>
                         <p>
-                            <input class="btn btn-primary" id='submitButton' type='submit' value='Try Again'> <a href="http://localhost/advWebCw1/" class="btn btn-default">Home</a>
+                            <input class="btn btn-primary" id='submitButton' type='submit' value='Try Again'> <a href="../../index.php" class="btn btn-default">Home</a>
                         </p>
                     </div>
                 </div>

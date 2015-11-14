@@ -35,4 +35,28 @@ class QuizController extends CI_Controller{
         $verdict = $quiz->getVerdict();
         $this->load->view("displayResultsPage",array('quiz'=>$quiz,'verdict'=>$verdict));
     }
+    public function searchQuiz(){
+        $data=array();
+        if(isset($_POST['searchString'])&&$_POST['searchString']!=""){
+            $quiz = new Quiz();
+            $data['quizzes'] = $quiz->searchQuizzes($_POST['searchString'],"SEARCH");
+            $this->load->view('displayQuizzesPage',$data);
+        }else{
+            $data['quizzes'] = array();
+            $this->load->view('displayQuizzesPage',$data);
+        }
+        
+    }
+    public function searchQuizByCategory(){
+        $data=array();
+        if(isset($_POST['category'])&&_POST['category']!=""){
+            $quiz = new Quiz();
+            $data['quizzes'] = $quiz->searchQuizzes($_POST['category'],"CATEGORY");
+            $this->load->view('displayQuizzesPage',$data);
+        }
+        else{
+            $data['quizzes'] = array();
+            $this->load->view('displayQuizzesPage',$data);
+        }
+    }
 }
