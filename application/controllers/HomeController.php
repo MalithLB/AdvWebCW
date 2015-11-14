@@ -5,14 +5,12 @@
         function __construct() {
             parent::__construct();
             $this->load->model("quiz");
+            $this->load->helper("url");
         }
         
         public function index()
 	{          
-            $data=array();
-            $quiz = new Quiz();
-            $data['quizzes'] = $quiz->populateQuizList();
-            $this->load->view('homePage',$data);
+            redirect('/QuizController/populateQuiz');
 	}
         
     }

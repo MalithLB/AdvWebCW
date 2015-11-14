@@ -18,6 +18,12 @@ class QuizController extends CI_Controller{
         parent::__construct();
         $this->load->model("Quiz");
     }
+    public function populateQuiz(){
+        $data=array();
+        $quiz = new Quiz();
+        $data['quizzes'] = $quiz->populateQuizList();
+        $this->load->view('homePage',$data);
+    }
     public function initializeQuiz(){
         if(isset($_POST['selectedQuiz'])){
             $quiz = new Quiz();
