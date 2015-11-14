@@ -32,7 +32,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <h3 class="page-header">Quizzable Quizzes</h3>
-                <h3> <small>Top Quizzes</small></h3>
+                <h3> <small>New Quizzes</small></h3>
             </div>
         </div>
  
