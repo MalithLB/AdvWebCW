@@ -116,7 +116,7 @@ class Quiz extends CI_Model {
     }
     
     public function populateQuizList(){
-        $queryString = "Select * from Quiz ORDER BY date desc limit 2"; 
+        $queryString = "Select * from Quiz ORDER BY date desc limit 25"; 
         $query = $this->db->query($queryString);
         $quizes = array();
         $i=0;

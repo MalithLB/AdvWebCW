@@ -12,9 +12,11 @@
  * @author Malith
  */
 
+$this->load->helper('url');
+$siteUrl = str_replace("index.php","",site_url());
 
-echo '<link href="http://localhost/advWebCw1/assets/css/bootstrap.min.css" rel="stylesheet">'
-    .'<link href="http://localhost/advWebCw1/assets/css/1-col-portfolio.css" rel="stylesheet">';
-echo '<script src="http://localhost/advWebCw1/assets/js/jquery.js"></script>'
-.'<script src="http://localhost/advWebCw1/assets/js/bootstrap.min.js"></script>';
+echo '<link href="'.$siteUrl.'/assets/css/bootstrap.min.css" rel="stylesheet">'
+    .'<link href="'.$siteUrl.'/assets/css/1-col-portfolio.css" rel="stylesheet">';
+echo '<script src="'.$siteUrl.'/assets/js/jquery.js"></script>'
+.'<script src="'.$siteUrl.'/assets/js/bootstrap.min.js"></script>';
 ?>

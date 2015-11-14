@@ -22,6 +22,7 @@
     <?php
         include("styles.php");
         include("navbar.php");
+        $this->load->helper('url');
     ?>
     <!-- Page Content -->
     <div class="container">
@@ -48,7 +49,7 @@
                         <br>
                         <h5><small><p>Try again or go back to home</p><small></h5>
                         <p>
-                            <input class="btn btn-primary" id='submitButton' type='submit' value='Try Again'> <a href="../../index.php" class="btn btn-default">Home</a>
+                            <input class="btn btn-primary" id='submitButton' type='submit' value='Try Again'> <a href="<?php echo site_url();?>" class="btn btn-default">Home</a>
                         </p>
                     </div>
                 </div>
