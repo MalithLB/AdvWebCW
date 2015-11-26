@@ -39,8 +39,11 @@
 
         <?php
             $this->load->model("Quiz");
+            $this->load->helper('url');
+            $url = site_url('quizController/initializeQuiz');
             for($i=0;$i<count($quizzes);$i++){
-            echo   '<form id="form'.$quizzes[$i]->getId().'" action="index.php/QuizController/initializeQuiz" method="POST">'
+            
+            echo   '<form id="form'.$quizzes[$i]->getId().'" action="'.$url.'" method="POST">'
                     .'<input type="hidden" name="selectedQuiz" value="'.$quizzes[$i]->getId().'">'
                     .'<div class="row" style="margin-right: 40%;height:10%;">'
                         .' <div class="col-md-7" style="width:35%">'

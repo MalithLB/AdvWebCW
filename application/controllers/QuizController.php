@@ -28,7 +28,8 @@ class QuizController extends CI_Controller{
         if(isset($_POST['selectedQuiz'])){
             $quiz = new Quiz();
             $quiz->getFullQuiz($_POST['selectedQuiz']);
-            $date['message'] = "data";
+            $date['message'] = "data";           
+            $this->load->helper('url');
             $this->load->view("quizPage",array('quiz'=>$quiz,'status'=>'okay'));
         }
     }

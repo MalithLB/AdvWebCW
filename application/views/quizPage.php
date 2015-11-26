@@ -80,7 +80,7 @@
         <div class="row">
             <div class="col-lg-12" >  
                 <form name="quiz" action="evaluateQuiz" method="POST">
-                <input type="hidden" id ="answersJSON" name="answersJSON" value='{"1":"Rural area","2":"10-50km","3":"Highways","4":"Never","5":"Somewhat","6":"I just want to go from A to B","7":"Im a bit adventurous","8":"I want speed and control but I dont want to lean forward like a gp rider"}'>
+                <input type="hidden" id ="answersJSON" name="answersJSON" value=''>
                 <input type="hidden" name="selectedQuiz" value="<?php echo $quiz->getId();?>";>
                 <div class="col-md-5" style="left-margin:40%">
                 <?php
