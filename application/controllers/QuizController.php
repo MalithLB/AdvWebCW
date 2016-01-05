@@ -17,6 +17,7 @@ class QuizController extends CI_Controller{
     function __construct() {
         parent::__construct();
         $this->load->model("Quiz");
+        $this->load->library('session');
     }
     public function populateQuiz(){
         $data=array();
@@ -66,5 +67,29 @@ class QuizController extends CI_Controller{
             $data['quizzes'] = array();
             $this->load->view('displayQuizzesPage',$data);
         }
+    }
+    
+    public function viewAnswers(){
+       
+        $quiz = new Quiz();
+        $quiz->getFullQuiz($this->session->userdata('quizId'));
+        
+        $answersList = json_decode($this->session->userdata('answersList'));
+        $answersString = "{";
+        for($i=1;$i<=count($answersList);$i++){
+            $answersString = $answersString.'"'.$i."\":\"".$answersList[$i-1];
+            if($i!=count($answersList)) $answersString = $answersString."\",";
+        }
+        $answersString = $answersString."\"}";
+        $quiz->setAnswersList($answersString);
+        $quiz->evaluate();
+        $data = array();
+        $data['quiz'] = $quiz;
+        $correctAnswers = $quiz->getEvaluationCriteria()->getCorrectAnswers($quiz->getQuestionsList());
+        $data['correctAnswers'] = $correctAnswers;
+        
+        $data['quizStats'] = $quiz->getEvaluationCriteria()->getAverage();
+        $quiz->getEvaluationCriteria()->updateAverage($quiz->getScore(),$quiz->getId());
+        $this->load->view('viewAnswersPage',$data);
     }
 }

@@ -37,7 +37,6 @@ class Quiz extends CI_Model {
         $this->load->model("EvaluationCriteria");
         $this->load->model("SimpleQuizEvaluationCriteria");
         $this->load->model("MultiAxisEvaluationCriteria");
-        //$this->load->helper("Quiz");
         $this->load->database();
     }
     
@@ -131,8 +130,7 @@ class Quiz extends CI_Model {
     }
     
     public function sortList($list){
-        for($i=0;$i<count($list);$i++){
-           
+        for($i=0;$i<count($list);$i++){   
             for($j=0;$j<count($list)-1;$j++){
                 
                 if($list[$j]->getQuestionNumber()>$list[$j+1]->getQuestionNumber()){
@@ -222,6 +220,9 @@ class Quiz extends CI_Model {
     public function getScore(){
         return $this->score;
     }
+    public function getEvaluationCriteria(){
+        return $this->evaluationCriteria;
+    }
     public function getQuestionsAsJSON(){
         $jsonString = "{";
         $j=0;
@@ -242,4 +243,5 @@ class Quiz extends CI_Model {
         }
         return $jsonString;
     }
+    
 }

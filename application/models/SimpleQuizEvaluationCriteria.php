@@ -23,6 +23,7 @@ class SimpleQuizEvaluationCriteria extends EvaluationCriteria{
         parent::__construct();
         $this->load->model('EvaluationCriteria');
         $this->load->model('Question');
+        $this->load->database();
     }
 
 
@@ -47,5 +48,35 @@ class SimpleQuizEvaluationCriteria extends EvaluationCriteria{
             }
         }
     }
-  
+    public function getCorrectAnswers($questionsList){
+        $answers = array();
+        for($i=0;$i<count($questionsList);$i++){
+            $choicesMatrix = $questionsList[$i]->getChoicesMatrix();
+            for($j=0;$j<$questionsList[$i]->getNumberOfChoices();$j++){
+                $answer = $questionsList[$i]->getAnswer($choicesMatrix[$j][0]);
+                if($answer == "1"){
+                    $answers[$i] = $choicesMatrix[$j][0];
+                }
+            }
+        }
+        return $answers;
+    }
+    
+    public function getAverage(){
+        $this->db->select('average, times_taken');
+        $query = $this->db->get('quiz');
+        $data = array();
+        foreach($query->result() as $row){
+            $data['average']=$row->average;
+            $data['times_taken']=$row->times_taken;
+        }
+        return $data;
+    }
+    public function updateAverage($score,$quizId){
+        $data = $this->getAverage();
+        $this->db->where('quiz_id',$quizId);
+        $data['average'] = ($data['average']*$data['times_taken']+$score)/($data['times_taken']+1);
+        $data['times_taken'] = $data['times_taken']+1;
+        $this->db->update('quiz',$data);
+    }
 }
