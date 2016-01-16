@@ -3,21 +3,35 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/advWebCw1/application/config/config.php</file>
             <file>file:/C:/xampp/htdocs/advWebCw1/application/models/Quiz.php</file>
-            <file>file:/C:/xampp/htdocs/advWebCw1/application/models/Question.php</file>
+            <file>file:/C:/xampp/htdocs/advWebCw1/application/config/config.php</file>
             <file>file:/C:/xampp/htdocs/advWebCw1/application/views/homePage.php</file>
             <file>file:/C:/xampp/htdocs/advWebCw1/application/controllers/index.html</file>
-            <file>file:/C:/xampp/htdocs/advWebCw1/application/models/index.html</file>
             <file>file:/C:/xampp/htdocs/advWebCw1/application/models/SimpleQuizEvaluationCriteria.php</file>
+            <file>file:/C:/xampp/htdocs/advWebCw1/application/controllers/Rest.php</file>
             <file>file:/C:/xampp/htdocs/advWebCw1/application/views/displayQuizzesPage.php</file>
-            <file>file:/C:/xampp/htdocs/advWebCw1/application/views/viewAnswersPage.php</file>
-            <file>file:/C:/xampp/htdocs/advWebCw1/application/views/displayResultsPage.php</file>
-            <file>file:/C:/xampp/htdocs/advWebCw1/application/views/navbar.php</file>
+            <file>file:/C:/xampp/htdocs/advWebCw1/application/views/index.html</file>
+            <file>file:/C:/xampp/htdocs/advWebCw1/application/views/styles.php</file>
+            <file>file:/C:/xampp/htdocs/advWebCw1/application/views/editQuestionsPage.php</file>
+            <file>file:/C:/xampp/htdocs/advWebCw1/application/views/addQuestionPage.php</file>
             <file>file:/C:/xampp/htdocs/advWebCw1/application/models/EvaluationCriteria.php</file>
-            <file>file:/C:/xampp/htdocs/advWebCw1/application/controllers/HomeController.php</file>
             <file>file:/C:/xampp/htdocs/advWebCw1/application/models/MultiAxisEvaluationCriteria.php</file>
             <file>file:/C:/xampp/htdocs/advWebCw1/application/controllers/QuizController.php</file>
+            <file>file:/C:/xampp/htdocs/advWebCw1/application/views/userDashboardPage.php</file>
+            <file>file:/C:/xampp/htdocs/advWebCw1/application/views/addOutcome.php</file>
+            <file>file:/C:/xampp/htdocs/advWebCw1/application/models/Question.php</file>
+            <file>file:/C:/xampp/htdocs/advWebCw1/application/controllers/navigationController.php</file>
+            <file>file:/C:/xampp/htdocs/advWebCw1/application/views/reviewQuizPage.php</file>
+            <file>file:/C:/xampp/htdocs/advWebCw1/application/models/User.php</file>
+            <file>file:/C:/xampp/htdocs/advWebCw1/application/models/index.html</file>
+            <file>file:/C:/xampp/htdocs/advWebCw1/assets/js/app/user.js</file>
+            <file>file:/C:/xampp/htdocs/advWebCw1/application/views/viewAnswersPage.php</file>
+            <file>file:/C:/xampp/htdocs/advWebCw1/application/views/loginSignupPage.php</file>
+            <file>file:/C:/xampp/htdocs/advWebCw1/application/views/displayResultsPage.php</file>
+            <file>file:/C:/xampp/htdocs/advWebCw1/application/views/createQuizPage.php</file>
+            <file>file:/C:/xampp/htdocs/advWebCw1/application/views/navbar.php</file>
+            <file>file:/C:/xampp/htdocs/advWebCw1/assets/js/app/quiz.js</file>
+            <file>file:/C:/xampp/htdocs/advWebCw1/application/controllers/HomeController.php</file>
             <file>file:/C:/xampp/htdocs/advWebCw1/application/views/quizPage.php</file>
         </group>
     </open-files>

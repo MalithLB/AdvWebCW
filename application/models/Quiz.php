@@ -223,6 +223,61 @@ class Quiz extends CI_Model {
     public function getEvaluationCriteria(){
         return $this->evaluationCriteria;
     }
+    public function createQuiz($data){
+        $result = $this->db->insert('quiz',$data);
+        $id = $this->db->insert_id();    
+        return array('result'=>$result,'quizId'=>$id);
+    }
+    public function fetchBasicQuiz($data){
+        $query = $this->db->get_where('quiz',$data);
+        foreach($query->result() as $row){
+            $this->setBasicValues($row->quiz_id, $row->quiz_title, $row->type, $row->author,$row->image,$row->category,$row->description,$this->date);
+        }
+        return $this;
+    }
+    public function updateQuiz($data){
+        $this->db->where('quiz_id',$data->quizId);
+        $data = array('quiz_title'=>$data->title,
+                    'image'=>$data->image,
+                    'description'=>$data->description);
+        $result = $this->db->update('quiz',$data);
+        $result['error'] = $this->db->_error_number();
+        $result['message'] = $this->db->_error_message();
+        return $result;
+        
+    }
+    public function fetchVerdicts($data){
+        $query = $this->db->get_where('quiz',$data);
+         foreach($query->result() as $row){
+             return $row->verdict;
+         }
+    }
+    public function getOutcomeKeys($data){
+        
+        $verdicts = json_decode($this->fetchVerdicts($data));
+        $keys = array();
+        foreach($verdicts as $verdict){
+            array_push($keys, $verdict[0]);
+        }
+        return $keys;
+    }
+    public function insertVerdict($data){
+        $this->db->where('quiz_id',$data['quizId']);
+        $this->db->update('quiz',array('verdict'=>$data['verdicts']));
+        $report = array();
+        $report['error'] = $this->db->_error_number();
+        $report['message'] = $this->db->_error_message();
+        return $report;
+    }
+    public function insertQuestion($data){
+
+        $this->db->insert('questions',$data);        
+        $report = array();
+        $report['error'] = $this->db->_error_number();
+        $report['message'] = $this->db->_error_message();
+        return $report;
+    }
+    
     public function getQuestionsAsJSON(){
         $jsonString = "{";
         $j=0;
@@ -243,5 +298,22 @@ class Quiz extends CI_Model {
         }
         return $jsonString;
     }
+    
+    public function getLastId($data){
+        $this->db->where($data);
+        $this->db->order_by('question_id','DESC');
+        $query = $this->db->get('questions');
+        if($query->num_rows==0) return 0;
+        foreach($query->result() as $row) {
+            
+            return $row->question_id;
+        }
+    }
+
+    public function deleteQuiz($data){
+        $this->db->delete('questions',$data);
+        $this->db->delete('quiz',$data);
+    }
+        
     
 }

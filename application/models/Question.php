@@ -17,6 +17,10 @@ class Question extends CI_Model {
     private $choicesMatrix = array();
     private $image;
     
+    public function __construct() {
+        parent::__construct();
+        $this->load->database();   
+    }
     public function setQuestionNumber($number){
         $this->questionNumber = $number;
     }
@@ -66,4 +70,10 @@ class Question extends CI_Model {
         $this->setImage($image);
         $this->setChoicesMatrix($choicesBlock);
     }
+    
+    public function deleteQuestion($data){
+        $this->db->where($data);
+        $this->db->delete('questions');
+    }
+    
 }

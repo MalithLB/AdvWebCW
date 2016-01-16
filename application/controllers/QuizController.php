@@ -16,8 +16,10 @@ class QuizController extends CI_Controller{
     //put your code here
     function __construct() {
         parent::__construct();
+        $this->load->helper("url");
         $this->load->model("Quiz");
         $this->load->library('session');
+        $this->load->model("User");
     }
     public function populateQuiz(){
         $data=array();
@@ -92,4 +94,59 @@ class QuizController extends CI_Controller{
         $quiz->getEvaluationCriteria()->updateAverage($quiz->getScore(),$quiz->getId());
         $this->load->view('viewAnswersPage',$data);
     }
+    
+    public function createQuiz(){
+        if($this->session->userdata('userId')!=null){
+            $user = new User();
+            $data = array('user'=>$user);
+            $this->load->view('createQuizPage',$data);
+        }else 
+            $this->load->view('homePage');
+    } 
+    
+    public function addOutcomes(){
+        
+        if($this->session->userdata('userId')!=null && $this->session->userdata('quizId')){
+                
+            $quiz = new Quiz();
+            $quiz->fetchBasicQuiz(array('quiz_id'=>$this->session->userdata('quizId')));
+            $verdict = $quiz->fetchVerdicts(array('quiz_id'=>$quiz->getId()));
+            $data = array('quiz'=>$quiz,'userId'=>$this->session->userdata('userId'),'verdict'=>$verdict);
+            $this->load->view('addOutcome',$data);
+        }
+    }
+    
+    public function addQuestion(){
+        if($this->session->userdata('userId')!=null && $this->session->userdata('quizId')){
+            $quiz = new Quiz();
+            
+            $data = array('quiz_Id'=>$this->session->userdata('quizId'));
+            $quiz->fetchBasicQuiz($data);
+            $data = array('quizId'=>$this->session->userdata('quizId'),'type'=>$quiz->getType());
+            $this->load->view('addQuestionPage',$data);
+        }
+    }
+    
+    public function editQuestions(){
+        if($this->session->userdata('userId')!=null && $this->session->userdata('quizId')){
+            $this->load->view('editQuestionsPage');
+        }
+    }
+    public function reviewQuiz(){
+
+        if($this->session->userdata('userId')!=null && $this->session->userdata('quizId')){
+            $quiz = new Quiz();
+            $quiz->fetchBasicQuiz(array('quiz_id'=>$this->session->userdata('quizId')));
+            $data = $data = array('quiz'=>$quiz,'userId'=>$this->session->userdata('userId'));
+            $this->load->view('reviewQuizPage',$data);
+        }
+    }
+    public function addQuizIdToSession(){
+        $json = json_decode(file_get_contents('php://input'));
+    
+        if($json->quiz_id!=null){
+            $this->session->set_userdata('quizId',$json->quiz_id);
+        }
+    }
+    
 }

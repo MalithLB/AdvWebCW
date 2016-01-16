@@ -10,6 +10,7 @@
         
         public function index()
 	{          
+            
             redirect('/QuizController/populateQuiz');
 	}
         

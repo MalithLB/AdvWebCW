@@ -15,7 +15,7 @@
             
 class SimpleQuizEvaluationCriteria extends EvaluationCriteria{
     /*
-     * Each option has a corresponding value. 0 for incorrect, 1 for correct.
+     * Each option has a corresponding value. WRONG for incorrect, CORRECT for correct.
      * Marking is done by iterating questions and the answers given by the user. 
      */
     
@@ -31,7 +31,7 @@ class SimpleQuizEvaluationCriteria extends EvaluationCriteria{
         $score=0;
         for($i=0;$i<count($usersAnswers);$i++){
             $answer = $questionsList[$i]->getAnswer($usersAnswers[$i]);
-            if($answer == "1"){
+            if($answer == "CORRECT"){
                 $score++;   
             } 
         }
@@ -54,7 +54,7 @@ class SimpleQuizEvaluationCriteria extends EvaluationCriteria{
             $choicesMatrix = $questionsList[$i]->getChoicesMatrix();
             for($j=0;$j<$questionsList[$i]->getNumberOfChoices();$j++){
                 $answer = $questionsList[$i]->getAnswer($choicesMatrix[$j][0]);
-                if($answer == "1"){
+                if($answer == "CORRECT"){
                     $answers[$i] = $choicesMatrix[$j][0];
                 }
             }
